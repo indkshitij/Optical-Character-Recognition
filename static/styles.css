@@ -1,0 +1,213 @@
+/* Root color variables */
+:root {
+    --background-color: #2f3542; /* Slate dark background */
+    --secondary-background: #3a3d46; /* Slightly lighter slate */
+    --border-color: #ffa502; /* Highlight (gold) */
+    --hover-background: #485061; /* Darker hover */
+    --text-color: #f1f2f6; /* Light text */
+    --placeholder-color: #dcdde1; /* Light gray */
+    --scrollbar-thumb: #ffa502; /* Scrollbar thumb color */
+    --scrollbar-track: #3a3d46; /* Scrollbar track color */
+    --font-base: 16px; /* Base font size for rem calculations */
+}
+
+/* General Styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    overflow: hidden; /* Prevent default scroll */
+    position: relative; /* Required for custom cursor */
+}
+
+/* Centered OCR Container */
+.ocr-container {
+    text-align: center;
+    background-color: var(--secondary-background);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 55rem;
+    height: auto;
+    max-height: 100%;
+    overflow-y: auto;
+    /* margin: 5vh 0 ; */
+}
+
+/* Custom Scrollbar */
+.ocr-container::-webkit-scrollbar {
+    width: 0.6rem;
+}
+
+.ocr-container::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 0.6rem;
+}
+
+.ocr-container::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+/* Title Styling */
+.title {
+    font-size: 1.75rem; /* Relative to base font size */
+    margin-bottom: 1.5rem;
+    color: var(--border-color);
+}
+
+/* File Upload Wrapper */
+.file-upload-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    max-width: 18rem;
+    border: 0.125rem dashed var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--secondary-background);
+    color: var(--placeholder-color);
+    padding: 0.75rem 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.file-upload-wrapper:hover {
+    background-color: var(--hover-background);
+}
+
+.file-upload-wrapper::after {
+    content: "Choose File"; /* Custom placeholder */
+    font-size: 0.875rem;
+    color: var(--placeholder-color);
+}
+
+/* Hide Default File Input */
+input[type="file"] {
+    display: none;
+}
+
+/* File Name Display */
+#fileName {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    color: var(--text-color);
+}
+
+/* Image Preview Container */
+.image-preview-container {
+    margin-top: 1.5rem;
+    display: none; /* Initially hidden */
+}
+
+.image-preview-container img {
+    max-width: 100%;
+    max-height: 15rem; /* Limit height to avoid overflow */
+    border-radius: 0.75rem;
+    border: 0.125rem solid var(--border-color);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+
+/* Text Output Section */
+.text-output {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.text-output h5 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.text-output textarea {
+    /* text-align: center; */
+    width: 97%;
+    height: 6rem;
+    border: 0.125rem solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem 0.75rem;
+    background-color: var(--secondary-background);
+    color: var(--text-color);
+    resize: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    overflow-y: auto; /* Enable scroll for overflowing text */
+}
+
+/* Scrollbar for Text Area */
+.text-output textarea::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.text-output textarea::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 0.5rem;
+}
+
+.text-output textarea::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+/* Responsive Design for Small Devices */
+@media (max-width: 768px) {
+    .ocr-container {
+        padding: 1.5rem;
+        width: 95%;
+        max-width: 100%;
+        overflow: visible;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .file-upload-wrapper::after {
+        font-size: 0.875rem;
+    }
+
+    #fileName {
+        font-size: 0.875rem;
+    }
+
+    .text-output h5 {
+        font-size: 1rem;
+    }
+
+    .text-output textarea {
+        width: 94%;
+        font-size: 0.875rem;
+    }
+}
+
+/* custom Cursor */
+/* Custom Cursor Styles */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px; /* Cursor size */
+    height: 20px; /* Cursor size */
+    background-color: var(--border-color); /* Highlight color */
+    border-radius: 50%; /* Make it circular */
+    pointer-events: none; /* Prevent cursor from blocking elements */
+    transform: translate(-50%, -50%); /* Center the cursor */
+    z-index: 9999;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+/* Cursor Effects */
+.custom-cursor.hidden {
+    opacity: 0;
+}
+
+.custom-cursor.active {
+    transform: scale(1.5); /* Scale effect when clicking or hovering */
+}
